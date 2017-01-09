@@ -50,7 +50,9 @@ if ( $basedir eq '' ){
 }
 chomp($basedir);
 
-$basedir =~ s/$PRINTER\/cupswrapper\/.*$/$PRINTER\//g;
+# rav: Remove trailing slash from this substitution,
+# and also remove $PRINTER since it is undefined at this point.
+$basedir =~ s/\/cupswrapper\/.*$//g;
 
 
 %units = ( pt   => \&pt2dot, 
@@ -358,8 +360,10 @@ if ( $DEVICEURILOCK == 1){
 $ENV{LPD_DEBUG} = $LPD_DEBUG;
 $ENV{PS}=1;
 
-$ENV{BRPAPERWIDTH}  = $width;
-$ENV{BRPAPERHEIGHT} = $height;
+# rav: Comment out these two lines, as the variables are already set in
+# set_options where $width and $height are computed.
+# $ENV{BRPAPERWIDTH}  = $width;
+# $ENV{BRPAPERHEIGHT} = $height;
 
 
 

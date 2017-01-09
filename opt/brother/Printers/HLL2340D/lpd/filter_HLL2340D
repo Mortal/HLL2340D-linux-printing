@@ -74,7 +74,8 @@ sub logprint  {
 
 my $BR_PRT_PATH = Cwd::realpath ($0);
 
-$BR_PRT_PATH =~ s/$PRINTER\/lpd\/.*$/$PRINTER\//g; 
+# rav: Remove trailing slash.
+$BR_PRT_PATH =~ s/$PRINTER\/lpd\/.*$/$PRINTER/g; 
 my $RCFILE=$ENV{BRPRINTERRCFILE};
 if ( $RCFILE eq '' ){
  $RCFILE=sprintf ("$BR_PRT_PATH/inf/br%src",$PRINTER);  
